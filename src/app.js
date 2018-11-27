@@ -4,6 +4,7 @@ const InstrumentFamilyDetails = require('./views/instrument_family_details.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
   console.log('Transform and roll out!');
 
   const selectElement = document.querySelector('select#instrument-families');
