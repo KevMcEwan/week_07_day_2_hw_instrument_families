@@ -12,25 +12,31 @@ InstrumentFamilyDetails.prototype.bindEvents = function () {
 };
 
 InstrumentFamilyDetails.prototype.render = function (instrumentFamily) {
+  this.container.innerHTML = '';
+
   const infoHeader = document.createElement('h1');
-  const infoParagraph = document.createElement('p');
-  const infoList = document.createElement('p');
-
-  const instruments = instrumentFamily.instruments
-
-
-
   infoHeader.textContent = `${instrumentFamily.name}`;
-  infoParagraph.textContent = `${instrumentFamily.description}.`;
-
-  instruments.forEach((instrument)=>{console.log(instrument)});
-
-  // this.container.innerHTML = '';
   this.container.appendChild(infoHeader);
+
+  const infoParagraph = document.createElement('p');
+  infoParagraph.textContent = `${instrumentFamily.description}.`;
   this.container.appendChild(infoParagraph);
 
+  const instruments = instrumentFamily.instruments;
+  const instrumentList = this.createInstrumentList(instruments);
+  this.container.appendChild(instrumentList);
+};
 
+InstrumentFamilyDetails.prototype.createInstrumentList = function (instruments) {
 
+  const infoList = document.createElement('ul');
+
+  instruments.forEach( (instrument) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${instrument}`;
+    infoList.appendChild(listItem);
+  });
+  return infoList;
 };
 
 
